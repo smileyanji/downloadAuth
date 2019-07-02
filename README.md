@@ -1,2 +1,2 @@
 # downloadAuth
-SDK for smile-yanji download auth API 
+SDK for iwinv download auth API 
