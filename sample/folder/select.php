@@ -20,9 +20,9 @@ $title = 'Select - Folder' ;
 		<?php
 		//폴더정보 조회
 		$folder = $AUTH -> foldersSelect ( $AUTH -> token , '' , $AUTH -> folderKey ) ;
-		if ( isset ( $folder -> folders ) )
+		if ( isset ( $folder -> Folders ) )
 		{
-			$folder = $folder -> folders ;
+			$folder = $folder -> Folders ;
 		?>
 		<h3> 폴더 정보 : </h3>
 		<table id="folderSingleTable">
