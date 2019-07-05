@@ -11,6 +11,15 @@ SDK 를 사용하면 편리하고 안전하게 API 연결을 할수있다.
 * API서버 도메인을 `apiDomain`로 설정한다.
 * API 버전을 `version`로 설정한다.
 * 콘솔사이트에서 `사용자명` 메뉴 -> `설정&관리` -> `AccessKey 관리` 에서 accesskey를 생성하고 accesskey ID 과 secret를 `accesskeyId`,`accesskeySecret` 로 설정한다.
+
+<p align="center">
+  <img src="./img/img1.jpg" alt="accesskey 설정방법" width="750">
+</p>
+
+<p align="center">
+  <img src="./img/img2.jpg" alt="accesskey 설정방법" width="750">
+</p>
+
 * 콘솔사이트에서 폴더생성하고 스토리지키와 폴더키를 `storageKey`,`folderKey`로 설정한다.
 
 
