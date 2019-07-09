@@ -18,50 +18,62 @@ class Authentication
 	 * @var string accesskey ID
 	 */
 	private static $accesskeyId ;
+
 	/**
 	 * @var string accesskey 비번
 	 */
 	private static $accesskeySecret ;
+
 	/**
 	 * @var string API서버 도메인
 	 */
 	private static $apiDomain ;
+
 	/**
 	 * @var string Token 요청주소
 	 */
 	public static $authenticationtUrl ;
+
 	/**
 	 * @var string 컨텐츠 관련 요청주소 ( 업로드 , 검색 , 수정 , 삭제 )
 	 */
 	public static $contentsUrl ;
+
 	/**
 	 * @var string 폴더관련 요청주소 ( 생성 , 검색 )
 	 */
 	public static $foldersUrl ;
+
 	/**
 	 * @var string 스토리지 검색 주소
 	 */
 	public static $storagesUrl ;
+
 	/**
 	 * @var string 다운로드 url 요첟주소
 	 */
 	public static $downloadLinkUrl ;
+
 	/**
 	 * @var string 스토리지키
 	 */
 	public $storageKey ;
+
 	/**
 	 * @var string 폴더키
 	 */
 	public $folderKey ;
+
 	/**
 	 * @var boolean 토큰 유효기간 초과할때 다시 토큰을 요청했는지
 	 */
 	private $countOvertime ;
+
 	/**
 	 * @var string Token
 	 */
 	public $token ;
+
 
 	/**
 	 * 클래스 생성자
@@ -72,17 +84,18 @@ class Authentication
 	{
 		self::$accesskeyId = $setting['accesskeyId'] ;
 		self::$accesskeySecret = $setting['accesskeySecret'] ;
-		self::$apiDomain = $setting['apiDomain'] ;
+		self::$apiDomain = $setting['apiDomain'] . $setting['version'] . '/' ;
 		$this -> storageKey = $setting['storageKey'] ;
 		$this -> folderKey = $setting['folderKey'] ;
 
-		self::$authenticationtUrl = self::$apiDomain . 'authorization' ;
-		self::$contentsUrl = self::$apiDomain . 'contents/' ;
-		self::$foldersUrl = self::$apiDomain . 'folders/' ;
-		self::$storagesUrl = self::$apiDomain . 'storages/' ;
-		self::$downloadLinkUrl = self::$apiDomain . 'downloadUrl/' ;
+		self::$authenticationtUrl = self::$apiDomain . 'authorization' . DIRECTORY_SEPARATOR ;
+		self::$contentsUrl = self::$apiDomain . 'contents' . DIRECTORY_SEPARATOR ;
+		self::$foldersUrl = self::$apiDomain . 'folders' . DIRECTORY_SEPARATOR ;
+		self::$storagesUrl = self::$apiDomain . 'storages' . DIRECTORY_SEPARATOR ;
+		self::$downloadLinkUrl = self::$apiDomain . 'downloadUrl' . DIRECTORY_SEPARATOR ;
 		$this -> countOvertime = FALSE ;
 	}
+
 
 	/**
 	 * curl 방식으로 api 서버를 접근하기
@@ -117,6 +130,7 @@ class Authentication
 		return $re ;
 	}
 
+
 	/**
 	 * 인증토큰 요청
 	 * @return array 인증토큰 ( RequestID : 요청번호 ; Token : 인증토큰 ; Result : 결과 메시지 )
@@ -124,9 +138,9 @@ class Authentication
 	public function getToken ()
 	{
 		$accesskeySecret = password_hash ( self::$accesskeySecret , PASSWORD_DEFAULT ) ;
-		$headers[] = 'ACCESSKEYID:' . self::$accesskeyId ;
-		$headers[] = "ACCESSKEYSECRET:{$accesskeySecret}" ;
-		$headers[] = 'REMOTEADDR:' . $_SERVER['REMOTE_ADDR'] ;
+		$headers[] = 'AccesskeyID:' . self::$accesskeyId ;
+		$headers[] = "AccesskeySecret:{$accesskeySecret}" ;
+		$headers[] = 'RemoteAddr:' . $_SERVER['REMOTE_ADDR'] ;
 		$reqToken = self::curl ( self::$authenticationtUrl , $headers , 'GET' ) ;
 		if ( ! empty ( $reqToken ) )
 		{
@@ -142,6 +156,7 @@ class Authentication
 		else
 			echo "<script>alert('인증 토큰 생성시 오류발생했습니다.');</script>" ;
 	}
+
 
 	/**
 	 * 스토리지 총용량 검색
@@ -164,6 +179,7 @@ class Authentication
 		return $this -> returnMsg ( $re , __FUNCTION__ ) ; // $re -> totalStorage
 	}
 
+
 	/**
 	 * 스토리지 남은용량 검색
 	 * @param string $token 인증토큰
@@ -185,8 +201,9 @@ class Authentication
 		return $this -> returnMsg ( $re , __FUNCTION__ ) ; // $re -> restStorage
 	}
 
+
 	/**
-	 * 스토리지 이미사용용량 검색
+	 * 스토리지 사용용량 검색
 	 * @param string $token 인증토큰
 	 * @param string $storageKey 스토리지 키
 	 * @return array 남은 용량 ( RequestID : 요청번호 ; UsedStorage : 사용용량 ; Result : 결과 메시지 )
@@ -206,8 +223,9 @@ class Authentication
 		return $this -> returnMsg ( $re , __FUNCTION__ ) ; // $re -> usedStorage
 	}
 
+
 	/**
-	 * 스토리지  검색
+	 * 스토리지 상세 검색
 	 * @param string $token 인증토큰
 	 * @param string $storageKey 스토리지 키
 	 * @return array 스토리지  ( RequestID : 요청번호 ; Storages : 스토리지  ; Result : 결과 메시지 )
@@ -223,8 +241,9 @@ class Authentication
 		return $this -> returnMsg ( $re , __FUNCTION__ ) ; // $re -> storages
 	}
 
+
 	/**
-	 * 컨텐츠 조회 ( LIST )
+	 * 컨텐츠 리스트 검색
 	 * @param string $token 인증토큰
 	 * @param string $folderKey 폴더키
 	 * @return array 컨텐츠 정보list ( RequestID : 요청번호 ; Contents : 컨텐츠 list ; Result : 결과 메시지 )
@@ -244,8 +263,9 @@ class Authentication
 		return $this -> returnMsg ( $re , __FUNCTION__ ) ; // $re -> contents
 	}
 
+
 	/**
-	 * 컨텐츠 조회 ( 단건 )
+	 * 컨텐츠 상세 검색
 	 * @param string $token 인증토큰
 	 * @param string $contentsKey 컨텐츠 키
 	 * @return array 컨텐츠 정보 ( RequestID : 요청번호 ; Contents : 컨텐츠 정보 ; Result : 결과 메시지 )
@@ -263,6 +283,7 @@ class Authentication
 		$re = self::curl ( self::$contentsUrl . $contentsKey . '?keyType=single' , $headers , 'GET' ) ;
 		return $this -> returnMsg ( $re , __FUNCTION__ , $contentsKey ) ; // $re -> contents
 	}
+
 
 	/**
 	 * 목록생성
@@ -291,6 +312,7 @@ class Authentication
 		return $this -> returnMsg ( $re , __FUNCTION__ ) ; // $re -> folders
 	}
 
+
 	/**
 	 * 목록 조회
 	 * @param string $token 인증토큰
@@ -316,6 +338,7 @@ class Authentication
 		return $this -> returnMsg ( $re , __FUNCTION__ ) ; // $re -> folders
 	}
 
+
 	/**
 	 * 컨텐츠 삭제 ( 멀티 )
 	 * @param string $token 인증토큰
@@ -336,8 +359,9 @@ class Authentication
 		return $this -> returnMsg ( $re , __FUNCTION__ , $contentsKeys ) ;
 	}
 
+
 	/**
-	 * 태그 수정
+	 * 컨텐츠명 수정
 	 * @param string $token 인증토큰
 	 * @param  string $contentsName 컨텐츠 키
 	 * @param  string $contentsName 컨텐츠 명
@@ -360,6 +384,7 @@ class Authentication
 		return $this -> returnMsg ( $re , __FUNCTION__ , $contentsKey , $contentsName ) ;
 	}
 
+
 	/**
 	 * 태그 수정
 	 * @param string $token 인증토큰
@@ -381,6 +406,7 @@ class Authentication
 		return $this -> returnMsg ( $re , __FUNCTION__ , $contentsKey , $tag ) ;
 	}
 
+
 	/**
 	 * 다운로드 주소 요청
 	 * @param string $token 인증토큰
@@ -401,6 +427,7 @@ class Authentication
 		return $this -> returnMsg ( $re , __FUNCTION__ , $contentsKey ) ; // $re -> url
 	}
 
+
 	/**
 	 * 결과 처리
 	 * @param array 결과정보
@@ -414,19 +441,23 @@ class Authentication
 		if ( ! $response )
 			return FALSE ;
 		$response = json_decode ( $response ) ;
+		if ( ! isset ( $response -> Result ) )
+			return FALSE ;
 		if ( $this -> overtime ( $response -> Result ) )
 		{
-			//$param구성
 			$param = array () ;
 			if ( $param1 )
 				array_push ( $param , $param1 ) ;
 			if ( $param2 )
 				array_push ( $param , $param2 ) ;
-			//세토큰로 다시function호출하기
+			/**
+			* 세 토큰로 다시 function 호출하기
+			*/
 			return $this -> countOvertime ? NULL : call_user_func_array ( array ( $this , $functionName ) , $param ) ;
 		}
 		return $response ;
 	}
+
 
 	/**
 	 *  토큰 유효시간 초과할때 다시요청 ( 한번만 )
