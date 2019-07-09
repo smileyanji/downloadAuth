@@ -26,23 +26,27 @@ $title = 'Create - Folder' ;
 
 <?php include_once INC . DIRECTORY_SEPARATOR . 'header.inc' ; ?>
 
-	<input type="hidden" id="token" value="<?= $AUTH -> token ?>">
+	<div class="div_main">
+		<input type="hidden" id="token" value="<?= $AUTH -> token ?>">
 
-	<div class="item">
-		<h3> 폴더생성 : </h3>
-		<table id="folderCreateTable">
-			<tr>
-				<td class="td_bold">상위 폴더키 : </td>
-				<td><input type="text" name="inputFolderKey" value="<?=$AUTH -> folderKey ?>"></input></td>
-			</tr>
-			<tr>
-				<td class="td_bold">폴더명 : </td>
-				<td><input type="text" name="inputFolderName" vaue=""></input></td>
-			</tr>
-			<tr>
-				<td colspan=2 ><button type="button" name="btnFolderCreate">생 성</button></td>
-			</tr>
-		</table>
+		<div class="item">
+			<h3> 폴더생성 : </h3>
+			<div class="item_body">
+				<table id="folderCreateTable">
+					<tr>
+						<th>상위 폴더키 : </th>
+						<td><input type="text" name="inputFolderKey" value="<?=$AUTH -> folderKey ?>"></input></td>
+					</tr>
+					<tr>
+						<th>폴더명 : </th>
+						<td><input type="text" name="inputFolderName" vaue=""></input></td>
+					</tr>
+					<tr>
+						<td colspan=2 ><button type="button" name="btnFolderCreate">생 성</button></td>
+					</tr>
+				</table>
+			</div>
+		</div>
 	</div>
 </body>
 

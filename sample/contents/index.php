@@ -38,102 +38,133 @@ $title = 'Contents - Demo' ;
 
 <?php include_once INC . DIRECTORY_SEPARATOR . 'header.inc' ; ?>
 
-	<input type="hidden" id="token" value="<?= $AUTH -> token ; ?>">
+	<div class="div_main">
 
-	<div class="item">
-		<?php
+		<input type="hidden" id="token" value="<?= $AUTH -> token ; ?>">
 
-		/*
-		* 컨텐츠 가져오기 API : contents list select
-		*/
-		$contentsList = $AUTH -> contentsListSelect ( $AUTH -> token ) ;
 
-		if ( isset ( $contentsList -> Contents ) )
-			$contentsList = $contentsList -> Contents ;
-		else
-		{
-			$contentsList = '' ;
-			echo "<script>	alert( '컨텐츠 조회 할때 오류 발생했습니다.' );</script>" ;
-		}
-		?>
-		<h3>컨텐츠 목록 : </h3>
-		<table name="contentsTable">
-		<colgroup>
-			<col width="5%">
-			<col width="38%">
-			<col width="10%">
-			<col width="10%">
-			<col width="15%">
-			<col width="12%">
-			<col width="10%">
-		</colgroup>
-		<thead>
-		<tr>
-			<th><input type="checkbox" name="ckbAll"></th>
-			<th>컨텐츠명</th>
-			<th>컨텐츠 크기</th>
-			<th>업로드 구분</th>
-			<th>태그</th>
-			<th>생성 시간</th>
-			<th>다운로드</th>
-		</tr>
-		</thead>
-		<tbody>
-			<?
-			if ( $contentsList )
-			{
-				foreach ( $contentsList as $k => $val )
-				{
-					echo "<tr>"
-					. "<td><input type='checkbox' name='ckbContents' value='{$k}'></td>"
-					. "<td title='{$val -> name}'>{$val -> name}</td>"
-					. "<td>{$val -> size}</td>"
-					. "<td>{$val -> branch}</td>"
-					. "<td>{$val -> tag}</td>"
-					. "<td>{$val -> date_insert}</td>"
-					. "<td><a href='javascript:download(\"{$k}\")'>다운로드</a></td>"
-					. "</tr>" ;
-				}
-			}
+		<div class="item">
+			<?php
+
+			/*
+			* 컨텐츠 가져오기 API : contents list select
+			*/
+			$contentsList = $AUTH -> contentsListSelect ( $AUTH -> token ) ;
+
+			if ( isset ( $contentsList -> Contents ) )
+				$contentsList = $contentsList -> Contents ;
 			else
 			{
-				echo "<tr>"
-				. "<td colspan=7>"
-				. "<span>컨텐츠가 없습니다.</span>"
-				. "</td>"
-				. "</tr>" ;
+				$contentsList = '' ;
+				echo "<script>	alert( '컨텐츠 조회 할때 오류 발생했습니다.' );</script>" ;
 			}
 			?>
-		</tbody>
-		</table>
-	</div>
+			<h3>컨텐츠 목록 : </h3>
 
-	<div class="item">
-		<h3> 컨텐츠 업로드 : </h3>
-		<form name="formUpload" method="POST" enctype="multipart/form-data">
-			<input type="hidden" name="token" value="<?= $AUTH -> token ?>">
-			<input type="text" name="tag"  class="tag" value="origenal,free">
-			<input type="file" name="contents[]"  id="contentsFile" multiple="multiple" >
-		</form>
-		<button  type="button" name="btnUpload">업로드 시작</button>
-		<progress name="progressBar" value="0" max="100"> </progress>
-	</div>
+			<div class="item_body">
+				<table name="contentsTable">
+				<colgroup>
+					<col width="5%">
+					<col width="38%">
+					<col width="10%">
+					<col width="10%">
+					<col width="15%">
+					<col width="12%">
+					<col width="10%">
+				</colgroup>
+				<thead>
+				<tr>
+					<th><input type="checkbox" name="ckbAll"></th>
+					<th>컨텐츠명</th>
+					<th>컨텐츠 크기</th>
+					<th>업로드 구분</th>
+					<th>태그</th>
+					<th>생성 시간</th>
+					<th>다운로드</th>
+				</tr>
+				</thead>
+				<tbody>
+					<?
+					if ( $contentsList )
+					{
+						foreach ( $contentsList as $k => $val )
+						{
+							echo "<tr>"
+							. "<td><input type='checkbox' name='ckbContents' value='{$k}'></td>"
+							. "<td title='{$val -> name}'>{$val -> name}</td>"
+							. "<td>{$val -> size}</td>"
+							. "<td>{$val -> branch}</td>"
+							. "<td>{$val -> tag}</td>"
+							. "<td>{$val -> date_insert}</td>"
+							. "<td><a href='javascript:download(\"{$k}\")'>다운로드</a></td>"
+							. "</tr>" ;
+						}
+					}
+					else
+					{
+						echo "<tr>"
+						. "<td colspan=7>"
+						. "<span>컨텐츠가 없습니다.</span>"
+						. "</td>"
+						. "</tr>" ;
+					}
+					?>
+				</tbody>
+				</table>
+			</div>
+		</div>
 
-	<div class="item">
-		<h3> 이름 수정 : </h3>
-		<input type="text" name="nameUpdate"></input>
-		<button type="button" name="nameUpdate">수 정</button>
-	</div>
 
-	<div class="item">
-		<h3> 태그 수정 : </h3>
-		<input type="text" name="tagUpdate"></input>
-		<button type="button" name="tagUpdate">수 정</button>
-	</div>
+		<div class="item">
+			<h3> 컨텐츠 업로드 : </h3>
 
-	<div class="item">
-		<h3> 컨텐츠 삭제 : </h3>
-		<button type="button" name="contentsDelete">삭 제</button>
+			<div class="item_body">
+				<form name="formUpload" method="POST" enctype="multipart/form-data">
+					<input type="hidden" name="token" value="<?= $AUTH -> token ?>">
+					<span>태그 : </span>
+					<input type="text" name="tag" class="tag" value="origenal,free">
+					<div>
+						<input type="file" name="contents[]"  id="contentsFile" multiple="multiple" >
+					</div>
+				</form>
+				<button  type="button" name="btnUpload">업로드 시작</button>
+				<progress name="progressBar" value="0" max="100"> </progress>
+			</div>
+
+		</div>
+
+
+		<div class="item">
+			<h3> 이름 수정 : </h3>
+
+			<div class="item_body">
+				<input type="text" name="nameUpdate"></input>
+				<button type="button" name="nameUpdate">수 정</button>
+			</div>
+
+		</div>
+
+
+		<div class="item">
+			<h3> 태그 수정 : </h3>
+
+			<div class="item_body">
+				<input type="text" name="tagUpdate"></input>
+				<button type="button" name="tagUpdate">수 정</button>
+			</div>
+
+		</div>
+
+
+		<div class="item">
+			<h3> 컨텐츠 삭제 : </h3>
+
+			<div class="item_body">
+			<button type="button" name="contentsDelete">삭 제</button>
+			</div>
+
+		</div>
+
 	</div>
 
 </body>

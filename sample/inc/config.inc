@@ -9,6 +9,6 @@ putenv ( 'LC_ALL=ko_KR.utf8' ) ;
 setlocale ( LC_ALL , 'ko_KR.utf8' ) ;
 define ( 'DOMAIN' , ( ( isset ( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] ) ;
 
-include_once PROJECT . '/setting.inc' ;
+include_once PROJECT . '/setting.php' ;
 include_once CLASSPATH . 'Authentication.class.php' ;
 $AUTH = new Authentication ( $_API ) ;

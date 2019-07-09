@@ -22,7 +22,7 @@
 	</head>
 
 	<body>
-	<div>
-		<h2><?= $title ?></h2>
+	<div class="div_head">
+		<h1><?= $title ?></h1>
 		<p><a href="<?= DOMAIN ?>/sample/">-home-</a></p>
 	</div>
