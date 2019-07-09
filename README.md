@@ -45,9 +45,6 @@ SDK 를 사용하면 편리하고 안전하게 API 연결을 할수있다.
 ```
 $AUTH = new Authentication ( $_API );
 $token = $AUTH -> getToken ();
-/*
-* 스토리지list 가져오기
-*/
 $storages1 = $AUTH -> storagesSelect ( $AUTH -> token );
 $storages2 = $AUTH -> storagesSelect ( $token );
 $storages3 = $AUTH -> storagesSelect ();
