@@ -58,7 +58,7 @@ SDK 를 사용하면 편리하고 안전하게 API 연결을 할수있다.
 * `tagUpdate ( $token = '' , $contentsKey , $tag = '' )` -> 태그 수정.
 * `downloadLink ( $token = '' , $contentsKey )` -> 다운로드 주소 요청.
 
-인증Token 는 `getToken ()` 로 생성하면 깉은 오브젝트에서 저장하고있어서 아래와같이 `$storages1`;`$storages2`;`$storages3` 내용이 같다.
+인증Token 는 `getToken ()` 로 생성하면 은 오브젝트에서 저장하고있어서 아래와같이 `$storages1`;`$storages2`;`$storages3` 내용이 같다.
 ```
 $AUTH = new Authentication ( $_API );
 $token = $AUTH -> getToken ();
