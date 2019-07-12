@@ -17,29 +17,35 @@ $_API = array
 	 * apiDomain
 	 * API서버 도메인
 	 */
-	'apiDomain' => 'Input your api domain here!' ,
-
+	'apiDomain' => 'Input your api domain here.' ,
+	
+	/**
+	 * version
+	 * API버전
+	 */
+	'version' => 'v1' ,
+	
 	/**
 	 * accesskeyId
 	 * accesskey ID
 	 */
-	'accesskeyId' => 'Input your api accesskey ID here!' ,
+	'accesskeyId' => 'Input your api accesskey ID here.' ,
 
 	/**
 	 * accesskeySecret
 	 * accesskey 비번
 	 */
-	'accesskeySecret' => 'Input your api accesskey secret here!' ,
+	'accesskeySecret' => 'Input your api accesskey secret here.' ,
 
 	/**
 	 * storageKey
 	 * 스토리지키
 	 */
-	'storageKey' => 'Input your api storag key here!' ,
+	'storageKey' => 'Input your api storag key here.' ,
 
 	/**
 	 * folderKey
 	 * 폴더키
 	 */
-	'folderKey' => 'Input your api folder key here!' ,
+	'folderKey' => 'Input your api folder key here.' ,
 		) ;
