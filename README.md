@@ -21,13 +21,13 @@ SDK를 사용하면 편리하고 안전하게 API 연결을 할수있다.
   <img src="./img/img2.jpg" alt="accesskey 설정방법" width="810">
 </p>
 
-* 아래 그림과 같이 **콘솔사**에서 `사용자명` 메뉴 -> `설정&관리` -> `스토리지 설정`창에서 **storageKey**를 `setting.php`의`storageKey`로 설정한다.
+* 아래 그림과 같이 **콘솔**에서 `사용자명` 메뉴 -> `설정&관리` -> `스토리지 설정`창에서 **storageKey**를 `setting.php`의`storageKey`로 설정한다.
 
 <p align="center">
   <img src="./img/img3.jpg" alt="storageKey 설정방법" width="810">
 </p>
 
-* 아래 그림과 같이 **콘솔사** -> **파일함**에서 해당폴더의 **folderKey**를 `setting.php`의`folderKey`로 설정한다.
+* 아래 그림과 같이 **콘솔** -> **파일함**에서 해당폴더의 **folderKey**를 `setting.php`의`folderKey`로 설정한다.
 
 <p align="center">
   <img src="./img/img4.jpg" alt="folderKey 설정방법" width="810">
