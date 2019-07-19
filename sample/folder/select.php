@@ -5,10 +5,14 @@
  */
 include_once '../inc/config.inc' ;
 
-// 폴더키
+/*
+ * 폴더키
+ */
 isset ( $_GET['key'] ) ? $AUTH -> folderKey = $_GET['key'] : '' ;
 
-//Token 생성
+/*
+ * Token 생성
+ */
 $AUTH -> getToken () ;
 
 $title = 'Select - Folder' ;
@@ -52,7 +56,9 @@ $title = 'Select - Folder' ;
 
 		<div class="item">
 			<?php
-			//폴더list 조회
+			/*
+			 * 폴더list 조회
+			 */
 			$folders = $AUTH -> foldersSelect ( $AUTH -> token , 'list' , $AUTH -> folderKey ) ;
 			if ( isset ( $folders -> Folders ) )
 				$folders = $folders -> Folders ;

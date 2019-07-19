@@ -5,7 +5,9 @@
  */
 include_once '../inc/config.inc' ;
 
-//Token 생성
+/*
+ * Token 생성
+ */
 $AUTH -> getToken () ;
 
 $title = 'Space - Storage' ;
@@ -17,17 +19,23 @@ $title = 'Space - Storage' ;
 		<div class="item">
 			<h3> 스토리지 용량 정보  : </h3>
 			<?php
-			// 총용량 (byte)
+			/*
+			* 총용량 (byte)
+			*/
 			$total = $AUTH -> storageTotal ( $AUTH -> token , $AUTH -> storageKey ) ;
 			if ( isset ( $total -> TotalStorage ) )
 				$total = $total -> TotalStorage ;
 
-			// 남은 용량 (byte)
+			/*
+			* 남은 용량 (byte)
+			*/
 			$rest = $AUTH -> storageRest ( $AUTH -> token , $AUTH -> storageKey ) ;
 			if ( isset ( $rest -> RestStorage ) )
 				$rest = $rest -> RestStorage ;
 
-			// 사용 용량 (byte)
+			/*
+			* 사용 용량 (byte)
+			*/
 			$used = $AUTH -> storageUsed ( $AUTH -> token , $AUTH -> storageKey ) ;
 			if ( isset ( $used -> UsedStorage ) )
 				$used = $used -> UsedStorage ;

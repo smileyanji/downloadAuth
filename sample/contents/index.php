@@ -96,7 +96,7 @@ $title = 'Contents - Demo' ;
 							. "<td>{$val -> branch}</td>"
 							. "<td>{$val -> tag}</td>"
 							. "<td>{$val -> date_insert}</td>"
-							. "<td><a href='javascript:download(\"{$k}\")'>다운로드</a></td>"
+							. "<td><a href='javascript:download(\"{$k}\")'>다운로드link</a></td>"
 							. "</tr>" ;
 						}
 					}
@@ -268,15 +268,10 @@ $ ( document ).ready ( function () {
 				{
 					alert ( "Upload error" ) ;
 				}
-				else if ( ( data . Result ) . endsWith ( "uploaded" ) )
-				{
-					console . log ( data . ContentsList ) ;
-					alert ( data . Result ) ;
-					location.href = location . href ;
-				}
 				else
 				{
 					alert ( data . Result ) ;
+					location.href = location . href ;
 				}
 
 			} ,
@@ -310,19 +305,7 @@ $ ( document ).ready ( function () {
 			success : function ( data )
 			{
 				alert ( data ) ;
-				if ( data . endsWith ( "success" ) ) {
-					checked.each ( function () {
-						$ ( this ).parent().parent().remove() ;
-					} ) ;
-					if( $( "input[name=ckbContents]" ).length == 0 )
-					{
-						$ ( "table[name=contentsTable]" ) .find( "tbody" ) . append( "<tr>"
-						+ "<td colspan=7>"
-						+ "<span>컨텐츠가 없습니다.</span>"
-						+ "</td>"
-						+ "</tr>" );
-					}
-				}
+				location . href = location . href ;
 			} ,
 			error : function ( e )
 			{
@@ -362,11 +345,7 @@ $ ( document ).ready ( function () {
 			{
 				alert ( data ) ;
 				if ( data == "Contents name update success" )
-				{
-					checked.parent ().next ().html ( name ) ;
-					checked.prop ( "checked" , false ) ;
-					nameInput.val( '' );
-				}
+					location.href = location . href ;
 			} ,
 			error : function ( e )
 			{
@@ -406,11 +385,7 @@ $ ( document ).ready ( function () {
 			{
 				alert ( data ) ;
 				if ( data == "Contents tag update success" )
-				{
-					checked.parent ().next ().next ().next ().next ().html ( tag ) ;
-					checked.prop ( "checked" , false ) ;
-					tagInput.val( '' );
-				}
+					location.href = location . href ;
 			} ,
 			error : function ( e )
 			{
@@ -425,8 +400,6 @@ $ ( document ).ready ( function () {
 * 컨텐츠 삭제 API : contents delete
 */
 function download ( key ) {
-	if ( ! confirm ( "다운로드 하시겠습니까?" ) )
-		return;
 	$.ajax ( {
 		url : "download.php" ,
 		type : "post" ,
@@ -436,13 +409,15 @@ function download ( key ) {
 		} ,
 		success : function ( data )
 		{
-			var reg=/^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+).)+([A-Za-z0-9-~\/])+$/;
 			if ( data == 'closed' )
 				alert ( '비공개 컨텐츠입니다.' ) ;
-			else if ( !reg . test ( data ) )
-				alert ( data ) ;
 			else
-				location.href = data ;
+			{
+				if ( confirm ( '다운로드 link : \n' + data + '' + '\n다운로드하시겠습니까?'  ) )
+				{
+					location.href = data ;
+				}
+			}
 		} ,
 		error : function ( e )
 		{

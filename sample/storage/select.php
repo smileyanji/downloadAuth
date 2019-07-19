@@ -5,7 +5,9 @@
  */
 include_once '../inc/config.inc' ;
 
-//Token 생성
+/*
+ * Token 생성
+ */
 $AUTH -> getToken () ;
 
 $title = 'Select - Storage' ;
@@ -17,7 +19,9 @@ $title = 'Select - Storage' ;
 		<div class="item">
 			<h3>소트리지 목록 리스트 : </h3>
 			<?php
-			//스토리지list 가져오기
+			/*
+			 * 스토리지list 검색
+			 */
 			$storages = $AUTH -> storagesSelect ( $AUTH -> token ) ;
 			if ( $storages && isset ( $storages -> Storages ) )
 			{
@@ -67,7 +71,9 @@ $title = 'Select - Storage' ;
 		<div class="item">
 			<h3> 스토리지 정보 : </h3>
 			<?php
-			//스토리지 정보 가져오기
+			/*
+			 * 스토리지 정보 검색
+			 */
 			$storage = $AUTH -> storagesSelect ( $AUTH -> token , $AUTH -> storageKey ) ;
 			if ( $storage && isset ( $storage -> Storage ) )
 			{

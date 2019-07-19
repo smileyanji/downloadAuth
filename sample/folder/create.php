@@ -18,7 +18,9 @@
  */
 include_once '../inc/config.inc' ;
 
-//Token 생성
+/*
+ * Token 생성
+ */
 $AUTH -> getToken () ;
 
 $title = 'Create - Folder' ;
@@ -55,7 +57,7 @@ $title = 'Create - Folder' ;
 
 <script>
 $ ( document ).ready ( function () {
-	//폴더 생성
+
 	$( "button[name=btnFolderCreate]" ) . click ( function () {
 		var nameInput = $ ( "input[name=inputFolderName]" ) ;
 		var name = nameInput.val () ;

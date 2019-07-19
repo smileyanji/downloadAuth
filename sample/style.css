@@ -1,6 +1,6 @@
 body {
 	padding : 2%;
-	background-color: #f7f7f7;
+	background-color: #fffcf8;
 }
 
 .div_head{
@@ -35,19 +35,23 @@ table {
 table tr td{
 	padding : 5px;
 }
-table th{
+table tr th{
 	padding : 8px;
-	background-color : f1f0ed;
+	background-color : #f7f5f3;
+	color : #585858;
 }
 
 #folderCreateTable input { width:94%; }
 
-table  th , table  td {
+table tr th , table tr td {
 	border:1px solid #a0a0a0;
 	max-width: 600px;
 	min-width: 45px;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	border-color: transparent;
+	border-top-color: #c5c5c5;
+	border-bottom-color: #c5c5c5;
 }
 
 .tag { margin-bottom: 15px; }
@@ -58,4 +62,29 @@ button {
 
 .item_body {
 	padding: 5px 22px;
+}
+
+input[type=text] , button {
+	height: 24px;
+	border-radius: 5px;
+	outline: none;
+	border-top-style: groove;
+	border-right-style: groove;
+	border-bottom-style: groove;
+	border-left-style: groove;
+	border: 1px solid #a1a1a1;
+	padding: 0px 10px;
+}
+
+progress{
+	display: block;
+	margin-top: 16px;
+	width: 30%;
+}
+
+input[type='checkbox']{
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    outline: none;
 }
