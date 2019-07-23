@@ -196,19 +196,25 @@ $ ( document ).ready ( function () {
 	* 남은 용량 check
 	*/
 	$ ( '#contentsFile' ).change ( function ( e ) {
+		var e = e || event ;
 		var fileMsg = e.currentTarget.files ;
-		var totailSize = 0 ;
-		for ( var i = 0 ; i < fileMsg.length ; i ++ )
-		{
-			totailSize += fileMsg[i].size ;
-		}
-		if ( totailSize > rest )
-		{
-			alert ( "스토리지 남은공간 부족입니다." ) ;
-			restCheck = true ;
-		}
-		else
+		if ( ( typeof ( fileMsg ) == "undefined" ) )
 			restCheck = false ;
+		else
+		{
+			var totailSize = 0 ;
+			for ( var i = 0 ; i < fileMsg.length ; i ++ )
+			{
+				totailSize += fileMsg[i].size ;
+			}
+			if ( totailSize > rest )
+			{
+				alert ( "스토리지 남은공간 부족입니다." ) ;
+				restCheck = true ;
+			}
+			else
+				restCheck = false ;
+		}
 	} ) ;
 
 
